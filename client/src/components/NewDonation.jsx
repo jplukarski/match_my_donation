@@ -3,21 +3,26 @@ import Form from 'react-bootstrap/Form'
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button'
 import app from '../base'
+import PictureUploader from './PictureUploader'
 
 export default function NewDonation() {
     const [total, setTotal] = useState(0)
     const [group, setGroup] = useState('')
+    const [image, setImage] = useState(null)
     const handleTotal = (e) => {
         setTotal(e.target.value)
     }
     const handleGroup = (e) => {
         setGroup(e.target.value)
     }
-    const submitDonation = (e) => {
+    const handleImage = () => {
+        setImage({image})
+    }
+    const submitDonation = () => {
         app
         .firestore()
         .collection('donations')
-        .add({total:total,group:group})
+        .add({total:total,group:group,image:image})
         .then((res)=>console.log(res))
     }
 
@@ -41,8 +46,18 @@ export default function NewDonation() {
                             <option>ACLU</option>
                         </Form.Control>
                     </Form.Group>
+                    {/* <Form>
+                        <Form.File
+                            id="custom-file"
+                            
+                            custom
+                            type="file"
+                        />
+                    </Form> */}
+                        {/* <input type="file" accept='image/*' onChange={handleImage}></input> */}
+                    <PictureUploader getPhotos={handleImage}/>
                 </Form>
-                <Button onClick={submitDonation}>Submit</Button>
+                <Button onClick={submitDonation} >Submit</Button>
             </Container>
         </>
     )
