@@ -11,7 +11,7 @@ export default function Home() {
         <Container  style={{ marginTop: '2rem' }}>
            <h5>Hello everyone. My Employer has a program where they match $1 for $1 on donations made to eligible charities up to $2500. I do not have $2500. I do have $75, which I donated to the Chicago Community Bond Fund. I am pooling together the remaining $2425 to donate to this charity, along with a few other charities. For the sake of simplicity, I am going to limit the donations to 4 charities.</h5>
             <hr></hr>
-           <h5>The point of this website is for my own transparency. I will be posting the screenshots of all the transfers to me with your personal information blurred out. I will later post the reciepts to my donations along with the confirmation that my employer matched my contributions. I suggest leaving some sort of goofy message when you send me money so you an differentiate your posted receipt from the others</h5>
+           <h5>The point of this website is for my own transparency. I will be posting the screenshots of all the transfers to me with your personal information blurred out. I will later post the reciepts to my donations along with the confirmation that my employer matched my contributions. I suggest leaving a unique message when you send me money so you can differentiate your posted receipt from the others</h5>
         <hr></hr>
         </Container>
         <Container>
