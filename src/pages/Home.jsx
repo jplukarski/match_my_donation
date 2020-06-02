@@ -3,8 +3,48 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Card from 'react-bootstrap/Card'
 import Receipts from '../components/Receipts'
+import app from '../base'
+
 
 export default function Home() {
+    const [donations, setDonations] = useState([])
+    const [total, setTotal] = useState(0)
+    const [blm, setBLM] = useState(0)
+    const [aclu, setACLU] = useState(0)
+    const [ccbf, setCCBF] = useState(0)
+    const [mff, setMFF] = useState(0)
+
+    useEffect(() => {
+        app
+        .firestore()
+        .collection('donations')
+        .get()
+        .then(data => {
+            let allDonations = []
+            data.forEach(doc => {
+                allDonations.push(doc.data())
+            })
+            console.log(allDonations)
+            allDonations.forEach(x => {
+                setTotal(total + x.total)
+                switch(x.group){
+                    case "Chicago Community Bond Fund":
+                        setCCBF(ccbf + x.total)
+                        break;
+                    case "ACLU":
+                        setACLU(aclu + x.total)
+                        break;
+                    case "Minnesota Freedom Fund":
+                        setMFF(mff + x.total)
+                        break;
+                    case "Black Lives Matter":
+                        setBLM(blm + x.total)
+                        break;
+                }
+            })
+            setDonations(allDonations)
+        })
+    },[])
 
     return(
         <>
@@ -15,7 +55,7 @@ export default function Home() {
         <hr></hr>
         </Container>
         <Container>
-            <h1>Total Donated:</h1>
+            <h1>Total Donated: ${total}</h1>
             <hr></hr>
         </Container>
         <Container>
@@ -35,35 +75,36 @@ export default function Home() {
                     <Card.Img variant="top" src="blm.jpg" />
                     <Card.Body>
                         <Card.Title><a href="https://blacklivesmatter.com/">Black Lives Matter</a></Card.Title>
-                        <Card.Text>Total Donated: </Card.Text>
+                        <Card.Text>Total Donated: ${blm}</Card.Text>
                     </Card.Body>
                 </Card>
                 <Card style={{ width: '15rem' }}>
                     <Card.Img variant="top" src="aclu.jpeg" />
                     <Card.Body>
                         <Card.Title><a href="https://tinyurl.com/ycfo58q6">ACLU</a></Card.Title>
-                        <Card.Text>Total Donated: </Card.Text>
+                        <Card.Text>Total Donated: ${aclu}</Card.Text>
                     </Card.Body>
                 </Card>
                 <Card style={{ width: '15rem' }}>
                     <Card.Img variant="top" src="ccbf.png" />
                     <Card.Body>
                         <Card.Title><a href="https://chicagobond.org/">Chicago Community Bond Fund</a></Card.Title>
-                        <Card.Text>Total Donated: </Card.Text>
+                        <Card.Text>Total Donated: ${ccbf}</Card.Text>
                     </Card.Body>
                 </Card>
                 <Card style={{ width: '15rem' }}>
                     <Card.Img variant="top" src="mnf.jpeg" />
                     <Card.Body>
                         <Card.Title><a href="https://minnesotafreedomfund.org/">Minnesota Freedom Fund</a></Card.Title>
-                        <Card.Text>Total Donated: </Card.Text>
+                        <Card.Text>Total Donated: ${mff}</Card.Text>
                     </Card.Body>
                 </Card>
             </Row>
             <hr></hr>
         </Container>
         <Container>
-            <Receipts />
+            {/* {console.log(donations)} */}
+            <Receipts donationReceipts={donations}/>
         </Container>
         </>
     )

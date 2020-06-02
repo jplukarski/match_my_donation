@@ -8,15 +8,15 @@ import PictureUploader from './PictureUploader'
 export default function NewDonation() {
     const [total, setTotal] = useState(0)
     const [group, setGroup] = useState('')
-    const [image, setImage] = useState(null)
+    const [image, setImage] = useState('')
     const handleTotal = (e) => {
         setTotal(e.target.value)
     }
     const handleGroup = (e) => {
         setGroup(e.target.value)
     }
-    const handleImage = () => {
-        setImage({image})
+    const handleImage = (newImage) => {
+        setImage(newImage)
     }
     const submitDonation = () => {
         app
@@ -30,7 +30,7 @@ export default function NewDonation() {
         <>
             Total: {total}
             Group: {group}
-
+            {console.log(image)}
             <Container>
                 <Form>
                     <Form.Group controlId="exampleForm.ControlInput1">
