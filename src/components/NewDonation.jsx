@@ -10,7 +10,7 @@ export default function NewDonation() {
     const [group, setGroup] = useState('')
     const [image, setImage] = useState('')
     const handleTotal = (e) => {
-        setTotal(e.target.value)
+        setTotal(parseFloat(e.target.value))
     }
     const handleGroup = (e) => {
         setGroup(e.target.value)

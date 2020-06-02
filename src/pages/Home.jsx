@@ -8,10 +8,10 @@ import app from '../base'
 
 export default function Home() {
     const [donations, setDonations] = useState([])
-    const [total, setTotal] = useState(0)
+    const [total, setTotal] = useState(75)
     const [blm, setBLM] = useState(0)
     const [aclu, setACLU] = useState(0)
-    const [ccbf, setCCBF] = useState(0)
+    const [ccbf, setCCBF] = useState(75)
     const [mff, setMFF] = useState(0)
 
     useEffect(() => {
@@ -24,7 +24,6 @@ export default function Home() {
             data.forEach(doc => {
                 allDonations.push(doc.data())
             })
-            console.log(allDonations)
             allDonations.forEach(x => {
                 setTotal(total + x.total)
                 switch(x.group){
@@ -56,6 +55,7 @@ export default function Home() {
         </Container>
         <Container>
             <h1>Total Donated: ${total}</h1>
+            <h2>Total with match: ${total *2}</h2>
             <hr></hr>
         </Container>
         <Container>
@@ -75,35 +75,44 @@ export default function Home() {
                     <Card.Img variant="top" src="blm.jpg" />
                     <Card.Body>
                         <Card.Title><a href="https://blacklivesmatter.com/">Black Lives Matter</a></Card.Title>
-                        <Card.Text>Total Donated: ${blm}</Card.Text>
+                        <Card.Title>Total Donated: ${blm}</Card.Title>
+                        <Card.Text>Total with match: ${blm * 2}</Card.Text>
+
                     </Card.Body>
                 </Card>
                 <Card style={{ width: '15rem' }}>
                     <Card.Img variant="top" src="aclu.jpeg" />
                     <Card.Body>
                         <Card.Title><a href="https://tinyurl.com/ycfo58q6">ACLU</a></Card.Title>
-                        <Card.Text>Total Donated: ${aclu}</Card.Text>
+                        <Card.Title>Total Donated: ${aclu}</Card.Title>
+                        <Card.Text>Total with match: ${aclu * 2}</Card.Text>
+
                     </Card.Body>
                 </Card>
                 <Card style={{ width: '15rem' }}>
                     <Card.Img variant="top" src="ccbf.png" />
                     <Card.Body>
                         <Card.Title><a href="https://chicagobond.org/">Chicago Community Bond Fund</a></Card.Title>
-                        <Card.Text>Total Donated: ${ccbf}</Card.Text>
+                        <Card.Title>Total Donated: ${ccbf}</Card.Title>
+                        <Card.Text>Total with match: ${ccbf * 2}</Card.Text>
+
                     </Card.Body>
                 </Card>
                 <Card style={{ width: '15rem' }}>
                     <Card.Img variant="top" src="mnf.jpeg" />
                     <Card.Body>
                         <Card.Title><a href="https://minnesotafreedomfund.org/">Minnesota Freedom Fund</a></Card.Title>
-                        <Card.Text>Total Donated: ${mff}</Card.Text>
+                        <Card.Title>Total Donated: ${mff}</Card.Title>
+                        <Card.Text>Total Donated: ${mff * 2}</Card.Text>
+
                     </Card.Body>
                 </Card>
             </Row>
             <hr></hr>
         </Container>
         <Container>
-            {/* {console.log(donations)} */}
+            <h3>Receipts:</h3>
+            <span>Last Updated: June 2nd, 5:06 pm CST</span>
             <Receipts donationReceipts={donations}/>
         </Container>
         </>
