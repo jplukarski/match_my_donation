@@ -6,7 +6,8 @@ import Button from 'react-bootstrap/Button';
 import Jumbotron from 'react-bootstrap/Jumbotron';
 import app from '../base'
 import { AuthContext } from "../Auth";
-import Form from '../components/Form'
+import NewDonation from '../components/NewDonation'
+import Form from 'react-bootstrap/Form'
 
 const AddDonation = ({history}) => {
   const [email, setEmail] = useState('')
@@ -38,6 +39,7 @@ function handlePasswordChange(e) {
 
   return (
       <>
+
       {!currentUser ? <Container>
         <Row className="justify-content-md-center">
             <Form>
@@ -68,7 +70,7 @@ function handlePasswordChange(e) {
 
             </Form>
         </Row>
-      </Container> : <><button onClick={() => app.auth().signOut()}>Signout</button> <Form/></>}
+      </Container> : <><button onClick={() => app.auth().signOut()}>Signout</button> <NewDonation/></>}
       
       </>
   );

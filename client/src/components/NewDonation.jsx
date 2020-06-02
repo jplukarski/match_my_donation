@@ -4,7 +4,7 @@ import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button'
 import app from '../base'
 
-export default function Home() {
+export default function NewDonation() {
     const [total, setTotal] = useState(0)
     const [group, setGroup] = useState('')
     const handleTotal = (e) => {
