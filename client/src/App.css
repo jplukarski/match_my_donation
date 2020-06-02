@@ -1,0 +1,10 @@
+img {
+    width: 300px ;
+    height: 250px;
+    /*Scale down will take the necessary specified space that is 100px x 100px without stretching the image*/
+    object-fit:scale-down ;
+}
+.tiny-icon {
+    height: 20px;
+    width: 20px
+}
