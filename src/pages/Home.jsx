@@ -147,7 +147,7 @@ export default function Home() {
         </Container>
         <Container>
             <h3>Receipts:</h3>
-            <div>Last Updated: June 3nd, 1:14 pm CST</div>
+            <div>Last Updated: June 3nd, 2:57 pm CST</div>
             <Receipts donationReceipts={donations}/>
         </Container>
         </>

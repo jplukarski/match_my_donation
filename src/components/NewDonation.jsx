@@ -44,17 +44,9 @@ export default function NewDonation() {
                             <option>Minnesota Freedom Fund</option>
                             <option>Chicago Community Bond Fund</option>
                             <option>ACLU</option>
+                            <option>Greater Chicago Food Depository</option>
                         </Form.Control>
                     </Form.Group>
-                    {/* <Form>
-                        <Form.File
-                            id="custom-file"
-                            
-                            custom
-                            type="file"
-                        />
-                    </Form> */}
-                        {/* <input type="file" accept='image/*' onChange={handleImage}></input> */}
                     <PictureUploader getPhotos={handleImage}/>
                 </Form>
                 <Button onClick={submitDonation} >Submit</Button>
