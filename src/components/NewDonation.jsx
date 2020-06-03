@@ -9,6 +9,7 @@ export default function NewDonation() {
     const [total, setTotal] = useState(0)
     const [group, setGroup] = useState('')
     const [image, setImage] = useState('')
+    const [timestamp, setTimestamp] = useState('')
     const handleTotal = (e) => {
         setTotal(parseFloat(e.target.value))
     }
@@ -18,19 +19,36 @@ export default function NewDonation() {
     const handleImage = (newImage) => {
         setImage(newImage)
     }
+    const handleTimestamp = (e) => {
+        setTimestamp(e.target.value)
+    }
     const submitDonation = () => {
         app
         .firestore()
         .collection('donations')
         .add({total:total,group:group,image:image})
-        .then((res)=>console.log(res))
+        .then((res)=> {
+            console.log(res)
+            updateTime()
+        })
+    }
+
+    const updateTime = () => {
+        app
+        .firestore()
+        .collection('timestamp')
+        .doc('time')
+        .update({updatedAt: timestamp})
+        .then(res => {
+            console.log(res)
+        })
     }
 
     return(
         <>
             Total: {total}
             Group: {group}
-            {console.log(image)}
+            Timestamp: {timestamp}
             <Container>
                 <Form>
                     <Form.Group controlId="exampleForm.ControlInput1">
@@ -48,6 +66,10 @@ export default function NewDonation() {
                         </Form.Control>
                     </Form.Group>
                     <PictureUploader getPhotos={handleImage}/>
+                    <Form.Group controlId="exampleForm.ControlInput1">
+                        <Form.Label>Timestamp</Form.Label>
+                        <Form.Control onChange={handleTimestamp}/>
+                    </Form.Group>
                 </Form>
                 <Button onClick={submitDonation} >Submit</Button>
             </Container>

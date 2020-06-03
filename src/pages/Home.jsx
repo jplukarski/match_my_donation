@@ -14,8 +14,10 @@ export default function Home() {
     const [aclu, setACLU] = useState(0)
     const [mff, setMFF] = useState(0)
     const [gcfd, setGCFD] = useState(0)
+    const [timestamp, setTimestamp] = useState('')
 
     useEffect(() => {
+            updateTimeStamp()
             let data = []
             let newTotal = 0
             let newCCBF = 0
@@ -58,18 +60,18 @@ export default function Home() {
             .catch(err => {
                 console.log('Error getting documents', err);
             })
-            // .then(data => {
-            //     let allDonations = []
-            //     data.forEach(doc => {
-            //         allDonations.push(doc.data())
-            //     })
-            //     allDonations.forEach(x => {
-            //         setTotal(x.total)
-            //         console.log(total)
-            //     })
-            //     setDonations(allDonations)
-            // })
     },[])
+
+    const updateTimeStamp = () => {
+        app
+        .firestore()
+        .collection('timestamp')
+        .doc('time')
+        .get()
+        .then(snapshot => {
+            setTimestamp(snapshot.data().updatedAt)
+        })
+    }
 
     return(
         <>
@@ -147,7 +149,7 @@ export default function Home() {
         </Container>
         <Container>
             <h3>Receipts:</h3>
-            <div>Last Updated: June 3nd, 2:57 pm CST</div>
+            <div>Last Updated: {timestamp}</div>
             <Receipts donationReceipts={donations}/>
         </Container>
         </>
