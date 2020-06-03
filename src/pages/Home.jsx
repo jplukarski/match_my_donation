@@ -40,7 +40,7 @@ export default function Home() {
                     case "Black Lives Matter":
                         setBLM(blm + x.total)
                         break;
-                    case "Black Lives Matter":
+                    case "Greater Chicago Food Depository":
                         setGCFD(gcfd + x.total)
                         break;
                 }
@@ -58,8 +58,10 @@ export default function Home() {
         <hr></hr>
         </Container>
         <Container>
-            <h1>Total Donated (including mine): ${total}</h1>
-            <h2>Total with match: ${total *2}</h2>
+            {/* <h1>Total Donated (including mine): ${total}</h1>
+            <h2>Total with match: ${total *2}</h2> */}
+            <h1>Total Donated (including mine): $245</h1>
+            <h2>Total with match: ${245 *2}</h2>
             <hr></hr>
         </Container>
         <Container>
@@ -97,9 +99,10 @@ export default function Home() {
                     <Card.Img variant="top" src="ccbf.png" />
                     <Card.Body>
                         <Card.Title><a target="_blank" href="https://chicagobond.org/">Chicago Community Bond Fund</a></Card.Title>
-                        <Card.Title>Total Donated: ${ccbf}</Card.Title>
-                        <Card.Text>Total with match: ${ccbf * 2}</Card.Text>
-
+                        {/* <Card.Title>Total Donated: ${ccbf}</Card.Title>
+                        <Card.Text>Total with match: ${ccbf * 2}</Card.Text> */}
+                        <Card.Title>Total Donated: $145</Card.Title>
+                        <Card.Text>Total with match: ${145 * 2}</Card.Text>
                     </Card.Body>
                 </Card>
                 <Card style={{ width: '15rem' }}>
@@ -115,8 +118,8 @@ export default function Home() {
                     <Card.Img variant="top" src="fooddepository.png" />
                     <Card.Body>
                         <Card.Title><a target="_blank" href="https://www.chicagosfoodbank.org/">Greater Chicago Food Depository</a></Card.Title>
-                        <Card.Title>Total Donated: ${mff}</Card.Title>
-                        <Card.Text>Total Donated: ${mff * 2}</Card.Text>
+                        <Card.Title>Total Donated: ${gcfd}</Card.Title>
+                        <Card.Text>Total Donated: ${gcfd * 2}</Card.Text>
 
                     </Card.Body>
                 </Card>
@@ -125,7 +128,7 @@ export default function Home() {
         </Container>
         <Container>
             <h3>Receipts:</h3>
-            <div>Last Updated: June 2nd, 5:58 pm CST</div>
+            <div>Last Updated: June 3nd, 10:25 pm CST</div>
             <Receipts donationReceipts={donations}/>
         </Container>
         </>
