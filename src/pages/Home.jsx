@@ -9,44 +9,66 @@ import app from '../base'
 export default function Home() {
     const [donations, setDonations] = useState([])
     const [total, setTotal] = useState(75)
+    const [ccbf, setCCBF] = useState(75)
     const [blm, setBLM] = useState(0)
     const [aclu, setACLU] = useState(0)
-    const [ccbf, setCCBF] = useState(75)
     const [mff, setMFF] = useState(0)
     const [gcfd, setGCFD] = useState(0)
 
     useEffect(() => {
-        app
-        .firestore()
-        .collection('donations')
-        .get()
-        .then(data => {
-            let allDonations = []
-            data.forEach(doc => {
-                allDonations.push(doc.data())
+            let data = []
+            let newTotal = 0
+            let newCCBF = 0
+            let newBLM = 0
+            let newACLU = 0
+            let newMFF = 0
+            let newGCFD = 0
+            app
+            .firestore()
+            .collection('donations')
+            .get()
+            .then(snapshot => {
+                snapshot.forEach(doc => {
+                    data.push(doc.data())
+                    newTotal = newTotal + doc.data().total
+                    if(doc.data().group === "Chicago Community Bond Fund"){
+                        newCCBF = newCCBF + doc.data().total
+                    }
+                    if(doc.data().group === "Black Lives Matter"){
+                        newBLM = newBLM + doc.data().total
+                    }
+                    if(doc.data().group === "Minnesota Freedom Fund"){
+                        newMFF = newMFF + doc.data().total
+                    }
+                    if(doc.data().group === "ACLU"){
+                        newACLU = newACLU + doc.data().total
+                    }
+                    if(doc.data().group === "Greater Chicago Food Depository"){
+                        newGCFD = newGCFD + doc.data().total
+                    }
+                });
+                setDonations(data)
+                setTotal(total + newTotal)
+                setCCBF(ccbf + newCCBF)
+                setBLM(blm + newBLM)
+                setMFF(mff + newMFF)
+                setACLU(aclu + newACLU)
+                setGCFD(gcfd + newGCFD)
             })
-            allDonations.forEach(x => {
-                setTotal(total + x.total)
-                switch(x.group){
-                    case "Chicago Community Bond Fund":
-                        setCCBF(ccbf + x.total)
-                        break;
-                    case "ACLU":
-                        setACLU(aclu + x.total)
-                        break;
-                    case "Minnesota Freedom Fund":
-                        setMFF(mff + x.total)
-                        break;
-                    case "Black Lives Matter":
-                        setBLM(blm + x.total)
-                        break;
-                    case "Greater Chicago Food Depository":
-                        setGCFD(gcfd + x.total)
-                        break;
-                }
+            .catch(err => {
+                console.log('Error getting documents', err);
             })
-            setDonations(allDonations)
-        })
+            // .then(data => {
+            //     let allDonations = []
+            //     data.forEach(doc => {
+            //         allDonations.push(doc.data())
+            //     })
+            //     allDonations.forEach(x => {
+            //         setTotal(x.total)
+            //         console.log(total)
+            //     })
+            //     setDonations(allDonations)
+            // })
     },[])
 
     return(
@@ -58,10 +80,9 @@ export default function Home() {
         <hr></hr>
         </Container>
         <Container>
-            {/* <h1>Total Donated (including mine): ${total}</h1>
-            <h2>Total with match: ${total *2}</h2> */}
-            <h1>Total Donated (including mine): $245</h1>
-            <h2>Total with match: ${245 *2}</h2>
+            <h1>Total Donated (including mine): ${total}</h1>
+            <h2>Total with match: ${total *2}</h2>
+
             <hr></hr>
         </Container>
         <Container>
@@ -99,10 +120,8 @@ export default function Home() {
                     <Card.Img variant="top" src="ccbf.png" />
                     <Card.Body>
                         <Card.Title><a target="_blank" href="https://chicagobond.org/">Chicago Community Bond Fund</a></Card.Title>
-                        {/* <Card.Title>Total Donated: ${ccbf}</Card.Title>
-                        <Card.Text>Total with match: ${ccbf * 2}</Card.Text> */}
-                        <Card.Title>Total Donated: $145</Card.Title>
-                        <Card.Text>Total with match: ${145 * 2}</Card.Text>
+                        <Card.Title>Total Donated: ${ccbf}</Card.Title>
+                        <Card.Text>Total with match: ${ccbf * 2}</Card.Text>
                     </Card.Body>
                 </Card>
                 <Card style={{ width: '15rem' }}>
