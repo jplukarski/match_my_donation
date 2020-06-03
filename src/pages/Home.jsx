@@ -13,6 +13,7 @@ export default function Home() {
     const [aclu, setACLU] = useState(0)
     const [ccbf, setCCBF] = useState(75)
     const [mff, setMFF] = useState(0)
+    const [gcfd, setGCFD] = useState(0)
 
     useEffect(() => {
         app
@@ -39,6 +40,9 @@ export default function Home() {
                     case "Black Lives Matter":
                         setBLM(blm + x.total)
                         break;
+                    case "Black Lives Matter":
+                        setGCFD(gcfd + x.total)
+                        break;
                 }
             })
             setDonations(allDonations)
@@ -48,23 +52,23 @@ export default function Home() {
     return(
         <>
         <Container  style={{ marginTop: '2rem' }}>
-           <h5>Hello everyone👋. Joe Plukarski here. My Employer has a program where they match $1 for $1 on donations made to eligible charities up to $2500. I do not have $2500. I do have $75, which I donated to the Chicago Community Bond Fund. I am pooling together the remaining $2425 to donate to this charity, along with a few other charities. For the sake of simplicity, I am going to limit the donations to 4 charities.</h5>
-            <hr></hr>
-           <h5>The point of this website is for my own transparency. I will be posting the screenshots of all the transfers to me with your personal information blurred out. I will later post the reciepts to my donations along with the confirmation that my employer matched my contributions. I suggest leaving a unique message when you send me money so you can differentiate your posted receipt from the others.</h5>
+           <h5>Hello everyone👋 Joe here. My Employer has a program where they match $1 for $1 on donations made to eligible charities up to $2500. I do not have $2500. I do have $75, which I donated to the Chicago Community Bond Fund. I am pooling together the remaining $2425 to donate to this charity, along with a few other charities. For the sake of simplicity, I am going to limit the donations to 5 charities.</h5>
+                <hr></hr>
+           <h5>The point of this website is for my own transparency and organization. I will be posting the screenshots of all the transfers to me with your personal information blurred out. I will later post the reciepts to my donations along with the confirmation that my employer matched my contributions. I suggest leaving a unique message when you send me money so you can differentiate your posted receipt from the others.</h5>
         <hr></hr>
         </Container>
         <Container>
-            <h1>Total Donated: ${total}</h1>
+            <h1>Total Donated (including mine): ${total}</h1>
             <h2>Total with match: ${total *2}</h2>
             <hr></hr>
         </Container>
         <Container>
             <h1>Send me Money:</h1>
             <Row>
-                <img className="tiny-icon" src="venmo.svg" /><span>Venmo: <span>@jwplukarski</span></span>
+                <img className="tiny-icon" src="venmo.svg" />Venmo: @jwplukarski
             </Row>
             <Row>
-                <img className="tiny-icon" src="paypal.svg" /><span>PayPal: jwplukarski@gmail.com</span>
+                <img className="tiny-icon" src="paypal.svg" />PayPal: jwplukarski@gmail.com
             </Row>
             <hr></hr>
         </Container>
@@ -74,7 +78,7 @@ export default function Home() {
                 <Card style={{ width: '15rem' }}>
                     <Card.Img variant="top" src="blm.jpg" />
                     <Card.Body>
-                        <Card.Title><a href="https://blacklivesmatter.com/">Black Lives Matter</a></Card.Title>
+                        <Card.Title><a target="_blank" href="https://blacklivesmatter.com/">Black Lives Matter</a></Card.Title>
                         <Card.Title>Total Donated: ${blm}</Card.Title>
                         <Card.Text>Total with match: ${blm * 2}</Card.Text>
 
@@ -83,7 +87,7 @@ export default function Home() {
                 <Card style={{ width: '15rem' }}>
                     <Card.Img variant="top" src="aclu.jpeg" />
                     <Card.Body>
-                        <Card.Title><a href="https://tinyurl.com/ycfo58q6">ACLU</a></Card.Title>
+                        <Card.Title><a target="_blank" href="https://tinyurl.com/ycfo58q6">ACLU</a></Card.Title>
                         <Card.Title>Total Donated: ${aclu}</Card.Title>
                         <Card.Text>Total with match: ${aclu * 2}</Card.Text>
 
@@ -92,7 +96,7 @@ export default function Home() {
                 <Card style={{ width: '15rem' }}>
                     <Card.Img variant="top" src="ccbf.png" />
                     <Card.Body>
-                        <Card.Title><a href="https://chicagobond.org/">Chicago Community Bond Fund</a></Card.Title>
+                        <Card.Title><a target="_blank" href="https://chicagobond.org/">Chicago Community Bond Fund</a></Card.Title>
                         <Card.Title>Total Donated: ${ccbf}</Card.Title>
                         <Card.Text>Total with match: ${ccbf * 2}</Card.Text>
 
@@ -101,7 +105,16 @@ export default function Home() {
                 <Card style={{ width: '15rem' }}>
                     <Card.Img variant="top" src="mnf.jpeg" />
                     <Card.Body>
-                        <Card.Title><a href="https://minnesotafreedomfund.org/">Minnesota Freedom Fund</a></Card.Title>
+                        <Card.Title><a target="_blank" href="https://minnesotafreedomfund.org/">Minnesota Freedom Fund</a></Card.Title>
+                        <Card.Title>Total Donated: ${mff}</Card.Title>
+                        <Card.Text>Total Donated: ${mff * 2}</Card.Text>
+
+                    </Card.Body>
+                </Card>
+                <Card style={{ width: '15rem' }}>
+                    <Card.Img variant="top" src="fooddepository.png" />
+                    <Card.Body>
+                        <Card.Title><a target="_blank" href="https://www.chicagosfoodbank.org/">Greater Chicago Food Depository</a></Card.Title>
                         <Card.Title>Total Donated: ${mff}</Card.Title>
                         <Card.Text>Total Donated: ${mff * 2}</Card.Text>
 
